@@ -15,15 +15,17 @@ class BookController extends MyController
     {
         $users = $this->em->getRepository('Asso\AMBundle\Entity\User');
         $winzous = $this->em->getRepository('Asso\AMBundle\Entity\Asso');
-        $accounts = $this->em->getRepository('winzou\BookBundle\Entity\Account');
+        $accounts = $this->em->getRepository('Asso\BookBundle\Entity\Account');
         $entries = $this->em->getRepository('winzou\BookBundle\Entity\Entry');
         
         $user = $users->find(1);
         
+        /*
         $entry = new Entity\Entry;
         $entry->setUser($user);
         $entry->setAmount(99);
         $entry->setLabel('Second buy');
+        */
         
         /*
         $account = new Entity\Account;
@@ -50,7 +52,12 @@ class BookController extends MyController
         $this->em->flush();
         */
         
-        $entry = $entries->find(2);
+        /*
+        foreach($this->get('winzou_book.entry_manager')->findEntriesByAccount(array(1,2), false) as $entry)
+        {
+            var_dump($entry->getUser()->getUsername());
+        }
+        */
         
         
 		return $this->myRender('winzouBookBundle:Book:index');
