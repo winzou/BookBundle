@@ -15,7 +15,9 @@ Configuration
 -------------
 
 Please do :
+
 * Extend the Entry entity with the definition of id, user and account. Exemple (yourApp/src/yourApp/BookBundle/Entity/Entry.php) :
+
 	<?php
 	
 	namespace Asso\BookBundle\Entity;
@@ -50,6 +52,7 @@ Please do :
 	}
 
 * Extend the Account entity with the definition of id and wrap. Exemple (yourApp/src/yourApp/BookBundle/Entity/Account.php) :
+
 	<?php
 	
 	namespace Asso\BookBundle\Entity;
@@ -89,6 +92,7 @@ Please do :
 	}
 
 * Add in your app/config.yml (Asso\BookBundle is the namespace of your overriding bundle) :
+
 	# winzouBookBundle
 	winzou_book:
 	    entry:
