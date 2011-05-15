@@ -86,3 +86,12 @@ class Account extends BaseAccount
         $this->wrap = $wrap;
     }
 }``
+* Add in your app/config.yml (Asso\BookBundle is the namespace of your overriding bundle) :
+``# winzouBookBundle
+winzou_book:
+    entry:
+        entity:
+            class: Asso\BookBundle\Entity\Entry
+    account:
+        entity:
+            class: Asso\BookBundle\Entity\Account``
