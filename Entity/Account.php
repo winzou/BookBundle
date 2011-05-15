@@ -4,28 +4,14 @@ namespace winzou\BookBundle\Entity;
 
 
 /**
- * @orm:Entity
- * @orm:Table(name="ass_book_account")
+ * @orm:MappedSuperclass
  */
-class Account
+abstract class Account
 {
     /**
-     * @orm:Id
      * @orm:Column(type="integer")
-     * @orm:GeneratedValue(strategy="AUTO")
-     */
-    protected $id;
-    
-    /**
-     * @todo Get this dynamic
-     * @orm:ManyToOne(targetEntity="Asso\AMBundle\Entity\Asso")
      */
     protected $wrap;
-    
-    /**
-     * @OneToMany(targetEntity="Entry", mappedBy="account")
-     */
-    protected $entries;
     
     /**
      * @orm:Column(type="string")
@@ -33,12 +19,6 @@ class Account
      * @assert:NotBlank()
      */
     protected $name;
-    
-    
-    public function __construct()
-    {
-        $this->entries = new \Doctrine\Common\Collections\ArrayCollection();
-    }
     
     
     public function getId()
@@ -50,19 +30,9 @@ class Account
     {
         return $this->wrap;
     }
-    /** @todo Get this dynamic */
-    public function setWrap(\Asso\AMBundle\Entity\Asso $wrap)
+    public function setWrap($wrap)
     {
         $this->wrap = $wrap;
-    }
-    
-    public function getEntries()
-    {
-        return $this->entries;
-    }
-    public function addEntry(Entry $entry)
-    {
-        $this->entries[] = $entry;
     }
     
     public function getName()

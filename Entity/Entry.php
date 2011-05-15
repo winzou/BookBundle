@@ -6,34 +6,14 @@ use \Symfony\Component\Security\Core\User\UserInterface;
 
 
 /**
- * @orm:Entity
- * @orm:Table(name="ass_book_entry")
+ * @orm:MappedSuperclass
  */
-class Entry
+abstract class Entry
 {
-    /**
-     * @orm:Id
-     * @orm:Column(type="integer")
-     * @orm:GeneratedValue(strategy="AUTO")
-     */
-    protected $id;
-    
-    /**
-     * @orm:ManyToOne(targetEntity="Account", inversedBy="entries")
-     * @orm:JoinColumn(nullable=false)
-     */
-    protected $account;
-    
-    /**
-     * @orm:ManyToOne(targetEntity="Asso\AMBundle\Entity\User")
-     * @todo Get this dynamic
-     */
-    protected $user;
-    
     /**
      * @orm:Column(type="date")
      */
-    protected $date;
+    protected $createdAt;
     
     /**
      * @orm:Column(type="string")
@@ -46,6 +26,12 @@ class Entry
      * @orm:Column(type="decimal", scale="2")
      */
     protected $amount;
+    
+    /**
+     * To be overrided by developer if needed - not mapped yet
+     * @var UserInterface
+     */
+    protected $user;
     
     
     public function __construct()
@@ -78,13 +64,13 @@ class Entry
         $this->user = $user;
     }
     
-    public function getDate()
+    public function getCreatedAt()
     {
-        return $this->date;
+        return $this->createdAt;
     }
-    public function setDate(\Datetime $date)
+    public function setCreatedAt(\Datetime $createdAt)
     {
-        $this->date = $date;
+        $this->createdAt = $createdAt;
     }
     
     public function getLabel()
