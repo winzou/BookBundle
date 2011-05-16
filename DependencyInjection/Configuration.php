@@ -21,6 +21,10 @@ namespace winzou\BookBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 
+/**
+ * Configuration builder for final dev app/config/config.yml
+ * @author winzou
+ */
 class Configuration
 {
     public function getConfigTree()

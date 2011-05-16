@@ -25,8 +25,15 @@ use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\Config\FileLocator;
 
+/**
+ * Extension for the bundle winzouBookExtension
+ * @author winzou
+ */
 class winzouBookExtension extends Extension
 {
+    /**
+     * @see Symfony\Component\DependencyInjection\Extension.ExtensionInterface::load()
+     */
     public function load(array $configs, ContainerBuilder $container)
     {
         $processor     = new Processor();
@@ -40,6 +47,12 @@ class winzouBookExtension extends Extension
         $loader->load('services.yml');
     }
     
+    /**
+     * Set the given parameters to the given container
+     * @param ContainerBuilder $container
+     * @param string $name
+     * @param mixed $value
+     */
     private function bindParameter(ContainerBuilder $container, $name, $value)
     {
         if( is_array($value) )

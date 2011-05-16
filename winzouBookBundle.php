@@ -21,6 +21,10 @@ namespace winzou\BookBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
+/**
+ * winzouBookBundle root file
+ * @author winzou
+ */
 class winzouBookBundle extends Bundle
 {
 }

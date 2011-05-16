@@ -21,6 +21,9 @@ namespace winzou\BookBundle\Entity;
 
 
 /**
+ * Entity Account
+ * @author winzou
+ *
  * @orm:MappedSuperclass
  */
 abstract class Account
@@ -38,24 +41,43 @@ abstract class Account
     protected $name;
     
     
+    /**
+     * Get id
+     * @return int
+     */
     public function getId()
     {
         return $this->id;
     }
     
+    /**
+     * Get wrap
+     */
     public function getWrap()
     {
         return $this->wrap;
     }
+    /**
+     * Set wrap
+     * @param $wrap
+     */
     public function setWrap($wrap)
     {
         $this->wrap = $wrap;
     }
     
+    /**
+     * Get name
+	 * @return string
+     */
     public function getName()
     {
         return $this->name;
     }
+    /**
+     * Set name
+     * @param string $name
+     */
     public function setName($name)
     {
         $this->name = $name;

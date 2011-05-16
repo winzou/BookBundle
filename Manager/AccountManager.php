@@ -21,6 +21,10 @@ namespace winzou\BookBundle\Manager;
 
 use winzou\BookBundle\Entity\Account;
 
+/**
+ * AccountManager
+ * @author winzou
+ */
 class AccountManager extends AbstractManager
 {
     /**

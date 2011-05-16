@@ -23,6 +23,10 @@ use winzou\BookBundle\Entity\Entry;
 
 use Doctrine\ORM\Query;
 
+/**
+ * EntryManager
+ * @author winzou
+ */
 class EntryManager extends AbstractManager
 {
     /**

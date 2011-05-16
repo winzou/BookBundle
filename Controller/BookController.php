@@ -21,11 +21,13 @@ namespace winzou\BookBundle\Controller;
 
 /** @todo Beautiful dependency */
 use Asso\AMBundle\DependencyInjection\MyController;
-
 use Symfony\Component\Httpfoundation\Response;
-
 use winzou\BookBundle\Entity;
 
+/**
+ * BookController
+ * @author winzou
+ */
 class BookController extends MyController
 {
     public function indexAction()
