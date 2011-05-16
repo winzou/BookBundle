@@ -16,8 +16,25 @@ class winzouBookExtension extends Extension
         $configuration = new Configuration();
 
         $config = $processor->process($configuration->getConfigTree(), $configs);
+        
+        $this->bindParameter($container, 'winzou_book', $config);
             
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
+    }
+    
+    private function bindParameter(ContainerBuilder $container, $name, $value)
+    {
+        if( is_array($value) )
+        {
+            foreach( $value as $index => $val )
+            {
+                $this->bindParameter($container, $name.'.'.$index, $val);
+            }
+        }
+        else
+        {
+            $container->setParameter($name, $value);
+        }
     }
 }

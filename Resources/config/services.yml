@@ -1,9 +1,7 @@
 parameters:
     winzou_book.entry.manager.class: winzou\BookBundle\Manager\EntryManager
-    winzou_book.entry.entity.class:  Asso\BookBundle\Entity\Entry
     
     winzou_book.account.manager.class: winzou\BookBundle\Manager\AccountManager
-    winzou_book.account.entity.class:  Asso\BookBundle\Entity\Account
 
 services:
     winzou_book.entry_manager:
