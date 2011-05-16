@@ -14,8 +14,7 @@ class EntryManager extends AbstractManager
      */
     public function createEntry()
     {
-        $class = $this->class;
-        return new $class;
+        return parent::create();
     }
     
     /**
@@ -24,8 +23,7 @@ class EntryManager extends AbstractManager
      */
     public function deleteEntry(Entry $entry)
     {
-        $this->em->remove($entry);
-        $this->em->flush();
+        return parent::delete($entry);
     }
     
     /**

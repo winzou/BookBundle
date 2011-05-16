@@ -59,6 +59,26 @@ abstract class AbstractManager
     }
     
     /**
+     * Create an instance of the managed entity
+     * @return $this->class
+     */
+    protected function create()
+    {
+        $class = $this->class;
+        return new $class;
+    }
+    
+	/**
+     * Delete the given entity
+     * @param $this->class $entity
+     */
+    protected function delete($entity)
+    {
+        $this->em->remove($entity);
+        $this->em->flush();
+    }
+    
+    /**
      * Add requested associations to given QueryBuilder
      * @param QueryBuilder $qb
      * @param array $associations

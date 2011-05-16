@@ -12,8 +12,7 @@ class AccountManager extends AbstractManager
      */
     public function createAccount()
     {
-        $class = $this->class;
-        return new $class;
+        return parent::create();
     }
     
     /**
@@ -22,8 +21,7 @@ class AccountManager extends AbstractManager
      */
     public function deleteAccount(Account $account)
     {
-        $this->em->remove($account);
-        $this->em->flush();
+        return parent::delete($account);
     }
     
     /**
