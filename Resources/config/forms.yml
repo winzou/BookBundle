@@ -1,6 +1,9 @@
 parameters:
     winzou_book.forms.entry.type.class:    winzou\BookBundle\Form\EntryType
     winzou_book.forms.entry.handler.class: winzou\BookBundle\Form\EntryHandler
+    
+    winzou_book.forms.account.type.class:    winzou\BookBundle\Form\AccountType
+    winzou_book.forms.account.handler.class: winzou\BookBundle\Form\AccountHandler
 
 services:
     winzou_book.forms.entry_type:
@@ -16,3 +19,18 @@ services:
         class:     %winzou_book.forms.entry.handler.class%
         scope:     request
         arguments: [@winzou_book.forms.entry, @request, @winzou_book.entry_manager]
+    
+    
+    winzou_book.forms.account_type:
+        class:           %winzou_book.forms.account.type.class%
+        
+    winzou_book.forms.account:
+        factory_service: form.factory
+        factory_method:  create
+        class:           %form.factory.class%
+        arguments:       [@winzou_book.forms.account_type, null, { 'data_class': %winzou_book.account.entity.class% } ]
+    
+    winzou_book.forms.account_handler:
+        class:     %winzou_book.forms.account.handler.class%
+        scope:     request
+        arguments: [@winzou_book.forms.account, @request, @winzou_book.account_manager]
