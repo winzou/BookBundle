@@ -21,7 +21,7 @@
 namespace winzou\BookBundle\Entity;
 
 use winzou\BookBundle\Entity\Account;
-use \Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 
 /**
