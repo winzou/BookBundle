@@ -1,0 +1,9 @@
+{% extends "winzouBookBundle::layout.html.twig" %}
+
+{% block winzou_book_body %}
+	<form action="{{ path('winzou_book_newAccount') }}" method="post" {{ form_enctype(form) }}>
+	    {{ form_widget(form) }}
+	
+	    <input type="submit" />
+	</form>
+{% endblock %}

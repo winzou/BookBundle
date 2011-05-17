@@ -9,3 +9,11 @@ winzou_book_new:
 winzou_book_show:
     pattern:  /show/{id}
     defaults: { _controller: winzouBookBundle:Book:show }
+
+winzou_book_newAccount:
+    pattern:  /newAccount
+    defaults: { _controller: winzouBookBundle:Book:newAccount }
+
+winzou_book_showAccount:
+    pattern:  /showAccount/{id}
+    defaults: { _controller: winzouBookBundle:Book:showAccount }

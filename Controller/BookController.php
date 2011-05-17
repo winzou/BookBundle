@@ -110,13 +110,45 @@ class BookController extends AbstractController
 	
 	public function showAction($id)
 	{
-	    if( ! $entry = $this->get('winzou_book.entry_manager')->findFullOne($id, false) )
-	    {
-	        throw new NotFoundHttpException('Entry[id='.$id.'] not found');
+	    try {
+	        $entry = $this->get('winzou_book.entry_manager')->findFullOne($id, false);
+	    }
+	    catch(\Exception $e) {
+	        throw new NotFoundHttpException('Entry[id='.$id.'] not found', $e->getPrevious());
 	    }
 	    
         return $this->myRender('winzouBookBundle:Book:show', array(
 	        'entry' => $entry
+	    ));
+	}
+	
+	
+	public function newAccountAction()
+	{
+	    $form = $this->get('winzou_book.forms.account');
+	    $formHandler = $this->get('winzou_book.forms.account_handler');
+	    
+	    if( $formHandler->process() )
+	    {
+	        return $this->redirect($this->get('router')->generate('winzou_book_showAccount', array('id' => $form->getData()->getId())));
+	    }
+	    
+	    return $this->myRender('winzouBookBundle:Book:newAccount', array(
+	        'form' => $form->createView()
+	    ));
+	}
+	
+    public function showAccountAction($id)
+	{
+	    try {
+	        $account = $this->get('winzou_book.account_manager')->findFullOne($id, false);
+	    }
+	    catch(\Exception $e) {
+	        throw new NotFoundHttpException('Account[id='.$id.'] not found', $e->getPrevious());
+	    }
+	    
+        return $this->myRender('winzouBookBundle:Book:showAccount', array(
+	        'account' => $account
 	    ));
 	}
 }

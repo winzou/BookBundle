@@ -1,0 +1,14 @@
+{% extends "winzouBookBundle::layout.html.twig" %}
+
+{% block winzou_book_body %}
+
+	{% if app.session.hasFlash('notice') %}
+	    <div class="flash-notice">
+	        {{ app.session.flash('notice') }}
+	    </div>
+	{% endif %}
+
+
+	{{ account.name }} - {{ account.wrap }}
+	
+{% endblock %}
