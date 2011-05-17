@@ -2,6 +2,10 @@ AssoSite:
     pattern:  /
     defaults: { _controller: winzouBookBundle:Book:index }
 
+winzou_book_new:
+    pattern:  /new
+    defaults: { _controller: winzouBookBundle:Book:new }
+
 winzou_book_show:
     pattern:  /show/{id}
     defaults: { _controller: winzouBookBundle:Book:show }
