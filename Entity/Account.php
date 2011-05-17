@@ -42,6 +42,15 @@ abstract class Account
     
     
     /**
+     * Dump the name
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->getName();
+    }
+    
+    /**
      * Get id
      * @return int
      */

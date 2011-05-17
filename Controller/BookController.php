@@ -19,10 +19,16 @@
 
 namespace winzou\BookBundle\Controller;
 
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+
+use winzou\BookBundle\Form\EntryType;
+use winzou\BookBundle\Form\EntryHandler;
+
 /** @todo Beautiful dependency */
 use Asso\AMBundle\DependencyInjection\MyController;
 use Symfony\Component\Httpfoundation\Response;
-use winzou\BookBundle\Entity;
+use winzou\BookBundle\Entity\Entry;
+
 
 /**
  * BookController
@@ -32,16 +38,16 @@ class BookController extends MyController
 {
     public function indexAction()
     {
-        $users = $this->em->getRepository('Asso\AMBundle\Entity\User');
+        $entrys = $this->em->getRepository('Asso\AMBundle\Entity\User');
         $winzous = $this->em->getRepository('Asso\AMBundle\Entity\Asso');
         $accounts = $this->em->getRepository('Asso\BookBundle\Entity\Account');
         $entries = $this->em->getRepository('winzou\BookBundle\Entity\Entry');
         
-        $user = $users->find(1);
+        $entry = $entrys->find(1);
         
         /*
         $entry = new Entity\Entry;
-        $entry->setUser($user);
+        $entry->setUser($entry);
         $entry->setAmount(99);
         $entry->setLabel('Second buy');
         */
@@ -80,5 +86,18 @@ class BookController extends MyController
         
         
 		return $this->myRender('winzouBookBundle:Book:index');
+	}
+	
+	
+	public function showAction($id)
+	{
+	    if( ! $entry = $this->get('winzou_book.entry_manager')->findFullOne($id, false) )
+	    {
+	        throw new NotFoundHttpException('Entry[id='.$id.'] not found');
+	    }
+	    
+        return $this->myRender('winzouBookBundle:Book:show', array(
+	        'entry' => $entry
+	    ));
 	}
 }
