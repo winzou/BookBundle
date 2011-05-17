@@ -59,6 +59,12 @@ abstract class AbstractManager
         $this->class = $em->getClassMetadata($class)->name;
     }
     
+    /**
+     * Return one row with all associations done
+     * @param int $id
+     * @param bool $array
+     * @return $this->class
+     */
     public function findFullOne($id, $array = true)
     {
         $qb = $this->repository->createQueryBuilder('e');
