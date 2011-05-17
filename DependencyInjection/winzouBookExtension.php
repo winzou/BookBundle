@@ -44,7 +44,11 @@ class winzouBookExtension extends Extension
         $this->bindParameter($container, 'winzou_book', $config);
             
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-        $loader->load('services.yml');
+        
+        foreach( array('services', 'forms') as $file )
+        {
+            $loader->load($file.'.yml');
+        }
     }
     
     /**

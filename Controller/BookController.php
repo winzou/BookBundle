@@ -88,6 +88,28 @@ class BookController extends MyController
 		return $this->myRender('winzouBookBundle:Book:index');
 	}
 	
+	public function newAction()
+	{
+	    $form = $this->get('winzou_book.forms.entry');
+	    
+        //$formHandler = new EntryHandler($form, $this->get('request'), $this->get('winzou_book.entry_manager'));
+        $formHandler = $this->get('winzou_book.forms.entry_handler');
+        
+        
+
+        if( $formHandler->process() )
+        {
+            $entry = $form->getData();
+            
+            $this->get('session')->setFlash('notice', 'Your changes were saved!');
+
+            return $this->redirect($this->get('router')->generate('winzou_book_show', array('id' => $entry->getId())));
+        }
+
+        return $this->myRender('winzouBookBundle:Book:new', array(
+            'form' => $form->createView()
+        ));
+	}
 	
 	public function showAction($id)
 	{
