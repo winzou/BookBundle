@@ -101,3 +101,5 @@ Please do :
 		    account:
 		        entity:
 		            class: Asso\BookBundle\Entity\Account
+
+* Add __toString() methods to Entry, Account, and your wrap entity for ChoiceList
