@@ -46,6 +46,16 @@ class AccountManager extends AbstractManager
     }
     
     /**
+     * Update the given Account
+     * @param Account $account
+     * @param bool $andFlush
+     */
+    public function updateAccount(Account $account, $andFlush = true)
+    {
+        return parent::update($account, $andFlush);
+    }
+    
+    /**
      * Return a Account according to criteria
      * @param array $criteria
      * @return Account

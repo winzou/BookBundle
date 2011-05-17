@@ -79,6 +79,22 @@ abstract class AbstractManager
     }
     
     /**
+     * Update the given entity, and flush the EM if asked to
+     *
+     * @param $this->class $entity
+     * @param bool $andFlush
+     */
+    protected function update($entity, $andFlush = true)
+    {
+        $this->em->persist($entity);
+        
+        if( $andFlush )
+        {
+            $this->em->flush();
+        }
+    }
+    
+    /**
      * Add requested associations to given QueryBuilder
      * @param QueryBuilder $qb
      * @param array $associations

@@ -48,6 +48,16 @@ class EntryManager extends AbstractManager
     }
     
     /**
+     * Update the given Entry
+     * @param Entry $entry
+     * @param bool $andFlush
+     */
+    public function updateEntry(Entry $entry, $andFlush = true)
+    {
+        return parent::update($entry, $andFlush);
+    }
+    
+    /**
      * Return a list of entries belonging to the given list of accounts
      * @param array $accounts
      * @param bool $array Retrieve a read-only array instead of an ArrayCollection
