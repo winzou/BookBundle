@@ -61,7 +61,7 @@ abstract class Entry
      */
     public function __construct()
     {
-        $this->date = new \Datetime();
+        $this->created_at = new \Datetime();
     }
     
     /**
@@ -87,7 +87,6 @@ abstract class Entry
      */
     public function setAccount(Account $account)
     {
-        $account->addEntry($this);
         $this->account = $account;
     }
     
