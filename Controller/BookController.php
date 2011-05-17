@@ -20,13 +20,10 @@
 namespace winzou\BookBundle\Controller;
 
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Httpfoundation\Response;
 
 use winzou\BookBundle\Form\EntryType;
 use winzou\BookBundle\Form\EntryHandler;
-
-/** @todo Beautiful dependency */
-use Asso\AMBundle\DependencyInjection\MyController;
-use Symfony\Component\Httpfoundation\Response;
 use winzou\BookBundle\Entity\Entry;
 
 
@@ -34,7 +31,7 @@ use winzou\BookBundle\Entity\Entry;
  * BookController
  * @author winzou
  */
-class BookController extends MyController
+class BookController extends AbstractController
 {
     public function indexAction()
     {
@@ -90,12 +87,12 @@ class BookController extends MyController
 	
 	public function newAction()
 	{
-	    $form = $this->get('winzou_book.forms.entry');
+	    
 	    
         //$formHandler = new EntryHandler($form, $this->get('request'), $this->get('winzou_book.entry_manager'));
         $formHandler = $this->get('winzou_book.forms.entry_handler');
         
-        
+        $form = $this->get('winzou_book.forms.entry');
 
         if( $formHandler->process() )
         {
