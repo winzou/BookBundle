@@ -20,6 +20,7 @@
 namespace winzou\BookBundle\Manager;
 
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\EntityRepository;
 
@@ -56,6 +57,18 @@ abstract class AbstractManager
         $this->repository = $em->getRepository($class);
         
         $this->class = $em->getClassMetadata($class)->name;
+    }
+    
+    public function findFullOne($id, $array = true)
+    {
+        $qb = $this->repository->createQueryBuilder('e');
+        
+        $qb = $this->addAssociations($qb);
+        
+        $qb ->where('e.id = :id')
+            ->setParameter('id', $id);
+        
+        return $qb->getQuery()->getSingleResult( $array ? Query::HYDRATE_ARRAY : Query::HYDRATE_OBJECT );
     }
     
     /**
@@ -107,7 +120,7 @@ abstract class AbstractManager
             // check if @param is empty (means we join all associations) or if current $name is requested by @param
             if( ! $associations OR in_array($name, $associations) )
             {
-                $qb->innerJoin($qb->getRootAlias().'.'.$rel['fieldName'], $rel['fieldName']);
+                $qb->leftJoin($qb->getRootAlias().'.'.$rel['fieldName'], $rel['fieldName']);
                 $qb->addSelect($rel['fieldName']);
             }
         }
