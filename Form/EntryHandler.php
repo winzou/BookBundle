@@ -27,7 +27,7 @@ use winzou\BookBundle\Manager\EntryManager;
 use winzou\BookBundle\Entity\Entry;
 
 /**
- * EntryFormHandler
+ * EntryHandler
  * @author winzou
  */
 class EntryHandler
@@ -41,7 +41,7 @@ class EntryHandler
      *
      * @param Form $form
      * @param Request $request
-     * @param EntryManagerInterface $entryManager
+     * @param EntryManager $entryManager
      */
     public function __construct(Form $form, Request $request, EntryManager $entryManager)
     {
