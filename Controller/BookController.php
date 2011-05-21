@@ -21,6 +21,7 @@ namespace winzou\BookBundle\Controller;
 
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Httpfoundation\Response;
+use Doctrine\ORM\NoResultException;
 
 use winzou\BookBundle\Form\EntryType;
 use winzou\BookBundle\Form\EntryHandler;
@@ -102,7 +103,7 @@ class BookController extends AbstractController
 
             return $this->redirect($this->get('router')->generate('winzou_book_show', array('id' => $entry->getId())));
         }
-
+        
         return $this->myRender('winzouBookBundle:Book:new', array(
             'form' => $form->createView()
         ));
@@ -113,7 +114,7 @@ class BookController extends AbstractController
 	    try {
 	        $entry = $this->get('winzou_book.entry_manager')->findFullOne($id, false);
 	    }
-	    catch(\Exception $e) {
+	    catch(NoResultException $e) {
 	        throw new NotFoundHttpException('Entry[id='.$id.'] not found', $e->getPrevious());
 	    }
 	    
@@ -130,7 +131,9 @@ class BookController extends AbstractController
 	    
 	    if( $formHandler->process() )
 	    {
-	        return $this->redirect($this->get('router')->generate('winzou_book_showAccount', array('id' => $form->getData()->getId())));
+	        return $this->redirect(
+	            $this->get('router')->generate('winzou_book_showAccount', array('id' => $form->getData()->getId()))
+	        );
 	    }
 	    
 	    return $this->myRender('winzouBookBundle:Book:newAccount', array(
@@ -143,7 +146,7 @@ class BookController extends AbstractController
 	    try {
 	        $account = $this->get('winzou_book.account_manager')->findFullOne($id, false);
 	    }
-	    catch(\Exception $e) {
+	    catch(NoResultException $e) {
 	        throw new NotFoundHttpException('Account[id='.$id.'] not found', $e->getPrevious());
 	    }
 	    
