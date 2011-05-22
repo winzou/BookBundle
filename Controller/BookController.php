@@ -88,12 +88,8 @@ class BookController extends AbstractController
 	
 	public function newAction()
 	{
-	    
-	    
-        //$formHandler = new EntryHandler($form, $this->get('request'), $this->get('winzou_book.entry_manager'));
+	    $form = $this->get('winzou_book.forms.entry');
         $formHandler = $this->get('winzou_book.forms.entry_handler');
-        
-        $form = $this->get('winzou_book.forms.entry');
 
         if( $formHandler->process() )
         {
@@ -101,7 +97,9 @@ class BookController extends AbstractController
             
             $this->get('session')->setFlash('notice', 'Your changes were saved!');
 
-            return $this->redirect($this->get('router')->generate('winzou_book_show', array('id' => $entry->getId())));
+            return $this->redirect(
+                $this->get('router')->generate('winzou_book_show', array('id' => $entry->getId()))
+            );
         }
         
         return $this->myRender('winzouBookBundle:Book:new', array(
@@ -114,7 +112,7 @@ class BookController extends AbstractController
 	    try {
 	        $entry = $this->get('winzou_book.entry_manager')->findFullOne($id, false);
 	    }
-	    catch(NoResultException $e) {
+	    catch( NoResultException $e ) {
 	        throw new NotFoundHttpException('Entry[id='.$id.'] not found', $e->getPrevious());
 	    }
 	    
@@ -146,7 +144,7 @@ class BookController extends AbstractController
 	    try {
 	        $account = $this->get('winzou_book.account_manager')->findFullOne($id, false);
 	    }
-	    catch(NoResultException $e) {
+	    catch( NoResultException $e ) {
 	        throw new NotFoundHttpException('Account[id='.$id.'] not found', $e->getPrevious());
 	    }
 	    
