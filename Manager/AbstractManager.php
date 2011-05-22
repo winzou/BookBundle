@@ -31,12 +31,12 @@ use Doctrine\ORM\EntityRepository;
 abstract class AbstractManager
 {
     /**
-     * @var EntityManager
+     * @var Doctrine\ORM\EntityManager
      */
     protected $em;
     
     /**
-     * @var EntityRepository
+     * @var Doctrine\ORM\EntityRepository
      */
     protected $repository;
     
