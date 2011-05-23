@@ -19,24 +19,26 @@
 
 namespace winzou\BookBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Entity Account
  * @author winzou
  *
- * @orm:MappedSuperclass
+ * @ORM\MappedSuperclass
  */
 abstract class Account
 {
     /**
-     * @orm:Column(type="integer")
+     * @ORM\Column(type="integer")
      */
     protected $wrap;
     
     /**
-     * @orm:Column(type="string")
+     * @ORM\Column(type="string")
      *
-     * @assert:NotBlank()
+     * @Assert\NotBlank()
      */
     protected $name;
     

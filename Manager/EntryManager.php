@@ -63,13 +63,15 @@ class EntryManager extends AbstractManager
      * @param bool $array Retrieve a read-only array instead of an ArrayCollection
      * @return array|ArrayCollection
      */
-    public function findEntriesByAccount(array $account_ids, $array = true)
+    public function getEntries(array $account_ids, $array = true)
     {
         $qb = $this->repository->createQueryBuilder('e');
         
         $qb = $this->addAssociations($qb);
         
-        $qb->where($qb->expr()->in('e.account', $account_ids));
+        $qb
+            ->where($qb->expr()->in('e.account', $account_ids))
+            ->orderBy('e.createdAt', 'desc');
         
         return $qb->getQuery()->getResult( $array ? Query::HYDRATE_ARRAY : Query::HYDRATE_OBJECT );
     }

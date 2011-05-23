@@ -23,29 +23,31 @@ namespace winzou\BookBundle\Entity;
 use winzou\BookBundle\Entity\Account;
 use Symfony\Component\Security\Core\User\UserInterface;
 
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Entity Entry
  * @author winzou
  *
- * @orm:MappedSuperclass
+ * @ORM\MappedSuperclass
  */
 abstract class Entry
 {
     /**
-     * @orm:Column(type="date")
+     * @ORM\Column(type="date")
      */
     protected $created_at;
     
     /**
-     * @orm:Column(type="string")
+     * @ORM\Column(type="string")
      *
-     * @assert:NotBlank()
+     * @Assert\NotBlank()
      */
     protected $label;
     
     /**
-     * @orm:Column(type="decimal", scale="2")
+     * @ORM\Column(type="decimal", scale="2")
      */
     protected $amount;
     

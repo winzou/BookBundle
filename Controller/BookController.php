@@ -36,12 +36,16 @@ class BookController extends AbstractController
 {
     public function indexAction()
     {
-        $entrys = $this->em->getRepository('Asso\AMBundle\Entity\User');
+        /*
+        $entrys = $this->get->getRepository('Asso\AMBundle\Entity\User');
         $winzous = $this->em->getRepository('Asso\AMBundle\Entity\Asso');
         $accounts = $this->em->getRepository('Asso\BookBundle\Entity\Account');
         $entries = $this->em->getRepository('winzou\BookBundle\Entity\Entry');
         
         $entry = $entrys->find(1);
+        */
+        
+        $account = $this->get('winzou_book.account_manager')->findAccountBy(array('id'=>1))->setWrap('moi');
         
         /*
         $entry = new Entity\Entry;
