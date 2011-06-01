@@ -45,6 +45,18 @@ class AccountManager extends AbstractManager
         return parent::delete($account);
     }
     
+    public function deleteAccountsByWrap($wrap)
+    {
+        $wraps = (int) $wrap > 0 ? (array) $wrap : $wrap;
+        
+        $qb = $this->em->createQueryBuilder();
+        $qb ->delete($this->class, 'a')
+            ->join('a.entries', 'e')
+            ->where($qb->expr()->in('a.wrap', $wraps));
+    
+    return $qb->getQuery()->execute();
+    }
+    
     /**
      * Update the given Account
      * @param Account $account
@@ -52,6 +64,11 @@ class AccountManager extends AbstractManager
      */
     public function updateAccount(Account $account, $andFlush = true)
     {
+        if( is_object($account->getWrap()) AND ! $account->getWrap()->getId() )
+        {
+            throw new \Exception('Wrap has to be flushed before adding an account.');
+        }
+        
         return parent::update($account, $andFlush);
     }
     

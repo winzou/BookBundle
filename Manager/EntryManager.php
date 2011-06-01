@@ -58,22 +58,32 @@ class EntryManager extends AbstractManager
     }
     
     /**
-     * Return a list of entries belonging to the given list of accounts
-     * @param array $accounts
+     * Return a list of entries belonging to the given wrap
+     * @param array $wrap
      * @param bool $array Retrieve a read-only array instead of an ArrayCollection
      * @return array|ArrayCollection
      */
-    public function getEntries(array $account_ids, $array = true)
+    private function getEntriesBy($name, $value, $array = true)
     {
         $qb = $this->repository->createQueryBuilder('e');
         
         $qb = $this->addAssociations($qb);
         
-        $qb
-            ->where($qb->expr()->in('e.account', $account_ids))
-            ->orderBy('e.createdAt', 'desc');
+        $qb ->where($name.' = :param')
+                ->setParameter('param', $value)
+            ->orderBy('e.created_at', 'desc');
         
         return $qb->getQuery()->getResult( $array ? Query::HYDRATE_ARRAY : Query::HYDRATE_OBJECT );
+    }
+    
+    public function getEntriesByWrap($wrap, $array = true)
+    {
+        return $this->getEntriesBy('account.wrap', $wrap, $array);
+    }
+    
+    public function getEntriesByAccount(Account $account, $array = true)
+    {
+        return $this->getEntriesBy('account', $account, $array);
     }
     
     /**

@@ -11,3 +11,7 @@ services:
     winzou_book.account_manager:
         class:     %winzou_book.account.manager.class%
         arguments: [@doctrine.orm.entity_manager, %winzou_book.account.entity.class%]
+
+    winzou_book.service:
+        class:     winzou\BookBundle\BookService
+        arguments: [@winzou_book.entry_manager, @winzou_book.account_manager]
