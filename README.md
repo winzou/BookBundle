@@ -1,6 +1,11 @@
 winzouBookBundle
 =================
 
+Important information
+---------------------
+This bundle is not maintained anymore since it has been merge into my project. If you are still interested in its code, no problem just fork it.
+
+
 What's that?
 -------------
 
@@ -106,4 +111,4 @@ Please do :
 		        entity:
 		            class: Asso\BookBundle\Entity\Account
 
-* Add __toString() methods to your wrap entity for ChoiceList
+* Add __toString() method to your wrap entity for ChoiceList
